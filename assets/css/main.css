@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+    --ui-primary: #004146;
+    --ui-accent: #F2A71B;
+    --ui-background: #E3DBD4;
+}
+
+body {
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+}

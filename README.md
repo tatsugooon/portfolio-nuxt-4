@@ -1,75 +1,42 @@
-# Nuxt Minimal Starter
+# Yoda Tatsuya Portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+個人のポートフォリオのNuxt4 verです。\
+GSAPでほんのりアニメーションする以外は特に機能はありません。
 
-## Setup
+[本番 URL](https://t-hsn.com/portfolio/)
 
-Make sure to install dependencies:
+## 🛠 技術スタック
+
+- **フレームワーク**: Nuxt 4
+- **言語**: TypeScript
+- **スタイリング**: Tailwind CSS
+- **UI コンポーネント**: Nuxt UI
+- **アニメーション**: GSAP
+- **フォント**: Google Fonts (Oswald, Sawarabi Gothic)
+
+## 📦 インストール
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## 🏃‍♂️ 開発サーバー起動
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+開発サーバーは [http://localhost:3000](http://localhost:3000) で起動します。
 
-Build the application for production:
+## 🏗 ビルド
 
+### 静的ファイル生成
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## 🔧 開発環境
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Node.js 18+
+- npm 9+
+- Nuxt 4.0+
