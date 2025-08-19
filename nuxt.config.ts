@@ -4,6 +4,8 @@ export default defineNuxtConfig({
 
   // title
   app: {
+    baseURL: '',
+    buildAssetsDir: '_nuxt',
     head: {
       title: 'Yoda Tatsuya\'s Portfolio',
       meta: [
@@ -52,6 +54,7 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     minify: true,
+    preset: 'static',
     prerender: {
       routes: ['/']
     }
