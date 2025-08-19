@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 
   // title
   app: {
-    baseURL: '',
+    baseURL: '/portfolio/',
     buildAssetsDir: '_nuxt',
     head: {
       title: 'Yoda Tatsuya\'s Portfolio',
