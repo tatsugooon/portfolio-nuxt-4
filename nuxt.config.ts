@@ -18,16 +18,16 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'Yoda Tatsuya Portfolio' },
         { property: 'og:description', content: 'フルスタックエンジニア・クリエイター 依田達哉のポートフォリオサイト' },
-        { property: 'og:image', content: 'https://t-hsn.com/portfolio/assets/img/profile_icon.jpg' },
+        { property: 'og:image', content: 'https://t-hsn.com/portfolio/assets/img/OGP.png' },
         { property: 'og:url', content: 'https://t-hsn.com/portfolio/' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Yoda Tatsuya Portfolio' },
         { name: 'twitter:description', content: 'フルスタックエンジニア・クリエイター 依田達哉のポートフォリオサイト' },
-        { name: 'twitter:image', content: 'https://t-hsn.com/portfolio/assets/img/profile_icon.jpg' },
+        { name: 'twitter:image', content: 'https://t-hsn.com/portfolio/assets/img/OGP.png' },
       ],
       link: [
         { rel: 'canonical', href: 'https://t-hsn.com/portfolio/' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: 'https://t-hsn.com/portfolio/assets/img/favicon.ico' }
       ],
     },
   },
