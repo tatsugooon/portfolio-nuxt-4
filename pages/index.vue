@@ -108,7 +108,7 @@
           </div>
         </div>
       </section>
-      <section id="video" class="fade-up z-10">
+      <!-- <section id="video" class="fade-up z-10">
         <img src="/assets/img/ellipse-3.svg" alt="ellipce" id="ellipce-3" class="z-[-1] absolute w-[30vw] min-w-[300px] right-[50vw]" />
         <div id="section-content-3" class="flex flex-col items-center mx-4 my-8 gap-8">
           <h2 class="text-3xl font-oswald">Video.</h2>
@@ -131,7 +131,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
       <section id="experiences" class="fade-up z-10">
         <img src="/assets/img/ellipse-4.svg" alt="ellipce" id="ellipce-4" class="z-[-1] absolute w-[30vw] min-w-[300px] left-[50vw]" />
         <div id="section-content-4" class="flex flex-col items-center mx-4 my-8 gap-8">
@@ -165,10 +165,10 @@
           <div class="flex justify-center items-center gap-2">
             <p>Social</p>
             <a href="https://www.instagram.com/tatsugooon/">
-              <img src="/assets/img/icon/instagram.svg" alt="Instagram" />
+              <img src="/assets/img/icon/instagram.svg" alt="Instagram">
             </a>
             <a href="https://twitter.com/tatsugooon">
-              <img src="/assets/img/icon/twitter.svg" alt="Twitter" />
+              <img src="/assets/img/icon/twitter.svg" alt="Twitter">
             </a>
           </div>
         </div>
