@@ -28,12 +28,15 @@ npm run dev
 
 開発サーバーは [http://localhost:3000](http://localhost:3000) で起動します。
 
-## 🏗 ビルド
+## 🏗 公開用ファイルの生成
 
-### 静的ファイル生成
+公開用の静的ファイルを生成します。
+
 ```bash
-npm run build
+npm run generate
 ```
+
+生成されたファイルは `.output/public/` に出力されます。
 
 ## 🔧 開発環境
 
