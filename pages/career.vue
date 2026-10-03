@@ -9,7 +9,7 @@
           職務経歴書
         </h1>
         <p class="text-right text-gray-600">
-          2025年8月現在
+          2026年10月現在
         </p>
       </div>
       
@@ -17,10 +17,9 @@
       <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">｛ プロフィール ｝</h2>
 
       <blockquote class="my-6 p-6 bg-gray-50 rounded-lg">
-        開発経験7年目のフルスタックエンジニアとして、技術とビジネスの両面から価値創造とチームビルディングに取り組んでいます。<br />
-        大規模システム開発から自社プロダクト開発まで幅広い領域で経験を積み、PG → SE → PMとしてキャリアを発展させてきました。<br />
-        不動産・教育・医療・ECなどの多様なドメインで、技術選定からチームマネジメント、プロダクト設計、クロージングまで一気通貫で担当。<br />
-        現在はフルスクラッチECサイト開発チームのリーダーとして、開発とデータドリブン（自社蓄積データとN1分析）なプロダクト改善を推進し、事業成長に直結する技術的価値を提供しています。
+        2017年からエンジニアとして、PG → SE → PMと役割を広げ、技術と事業の両面からプロダクト開発を推進してきました。<br />
+        現在は株式会社TENTIALで6名チームのPM/EMを務め、フルスクラッチECの技術戦略、プロダクトロードマップ、チーム運営、採用を担当しています。<br />
+        購買体験の改善や業務効率化を通じて、事業成果につながるプロダクトづくりに取り組んでいます。
       </blockquote>
       
       <!-- プロフィールテーブル -->
@@ -76,9 +75,9 @@
                 <ul class="list-disc list-inside space-y-1">
                   <li>エンジニアマネジメント</li>
                   <li>事業課題の本質改善</li>
-                  <li>UI/UXデザインとマークアップ</li>
+                  <li>UI/UXデザイン</li>
                   <li>画像・動画編集</li>
-                  <li>AIを活用した開発・業務効率化</li>
+                  <li>業務フローへのAI組み込み</li>
                 </ul>
               </td>
               <td class="p-3" data-label="資格">
@@ -111,13 +110,16 @@
                   <li>Vue.js (2, 3)</li>
                   <li>Nuxt.js (2, 3, 4)</li>
                   <li>React</li>
-                  <strong>バックエンド</strong>
                   <li>Next.js</li>
-                  <li>urql（GraphQL）</li>
+                  <strong>バックエンド</strong>
+                  <li>Node.js</li>
+                  <li>PHP（Laravel）</li>
+                  <li>GraphQL</li>
                   <strong>データベース</strong>
                   <li>MySQL</li>
                   <li>PostgreSQL</li>
                   <li>MongoDB</li>
+                  <li>DynamoDB / Redis</li>
                 </ul>
               </td>
               <td class="p-3" data-label="AWS">
