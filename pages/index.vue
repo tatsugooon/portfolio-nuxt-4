@@ -1,8 +1,20 @@
 <template>
   <div class="bg-background text-primary overflow-x-hidden">
     <Navbar />
-    <div class="h-screen w-screen flex justify-center items-center relative">
-      <h1 id="title" class="text-5xl leading-normal text-center font-oswald text-primary">
+    <div class="hero h-screen w-screen flex justify-center items-center relative isolate overflow-hidden">
+      <div class="hero-video" aria-hidden="true">
+        <iframe
+          v-if="pageOrigin"
+          :src="heroVideoUrl"
+          title="AutumnLeaves video background"
+          frameborder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          tabindex="-1"
+        />
+      </div>
+      <div class="hero-wash" aria-hidden="true" />
+      <h1 id="title" class="relative z-10 text-5xl leading-normal text-center font-oswald text-primary">
         <span class="s">SYSTEM</span> <span class="s">ENGINEER</span> <span class="s">/</span> <span class="s">DIRECTOR</span>
         <br />
         <span class="s">WEB</span> <span class="s">CREATOR</span>
@@ -108,7 +120,7 @@
           </div>
         </div>
       </section>
-      <!-- <section id="video" class="fade-up z-10">
+      <section id="video" class="fade-up z-10">
         <img src="/assets/img/ellipse-3.svg" alt="ellipce" id="ellipce-3" class="z-[-1] absolute w-[30vw] min-w-[300px] right-[50vw]" />
         <div id="section-content-3" class="flex flex-col items-center mx-4 my-8 gap-8">
           <h2 class="text-3xl font-oswald">Video.</h2>
@@ -131,7 +143,7 @@
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
       <section id="experiences" class="fade-up z-10">
         <img src="/assets/img/ellipse-4.svg" alt="ellipce" id="ellipce-4" class="z-[-1] absolute w-[30vw] min-w-[300px] left-[50vw]" />
         <div id="section-content-4" class="flex flex-col items-center mx-4 my-8 gap-8">
@@ -178,11 +190,28 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+const pageOrigin = ref('')
+const heroVideoUrl = computed(() => {
+  const params = new URLSearchParams({
+    si: 'mzK3Jevj-sWkzt9T',
+    autoplay: '1',
+    mute: '1',
+    controls: '0',
+    loop: '1',
+    playlist: 'jQL02mu0AFI',
+    playsinline: '1',
+    rel: '0',
+    origin: pageOrigin.value,
+  })
+  return `https://www.youtube.com/embed/jQL02mu0AFI?${params.toString()}`
+})
+
 onMounted(() => {
+  pageOrigin.value = window.location.origin
   gsap.registerPlugin(ScrollTrigger)
   setAnimation()
 })
