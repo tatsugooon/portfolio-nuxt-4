@@ -1,6 +1,7 @@
 <template>
   <div class="bg-background text-primary overflow-x-hidden">
     <Navbar />
+    <canvas ref="cursorCanvas" class="cursor-particles" aria-hidden="true" />
     <div class="hero h-screen w-screen flex justify-center items-center relative isolate overflow-hidden">
       <div class="hero-video" aria-hidden="true">
         <iframe
@@ -190,11 +191,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const pageOrigin = ref('')
+const cursorCanvas = ref<HTMLCanvasElement | null>(null)
+type CursorParticle = { x: number, y: number, vx: number, vy: number, radius: number, life: number, maxLife: number, tone: string, phase: number, wobble: number, opacity: number }
+let cursorParticles: CursorParticle[] = []
+let cursorFrame = 0
+let cursorContext: CanvasRenderingContext2D | null = null
+let cursorMotionAllowed = true
+let lastPointer = { x: 0, y: 0 }
 const heroVideoUrl = computed(() => {
   const params = new URLSearchParams({
     si: 'mzK3Jevj-sWkzt9T',
@@ -212,9 +220,96 @@ const heroVideoUrl = computed(() => {
 
 onMounted(() => {
   pageOrigin.value = window.location.origin
+  setupCursorParticles()
   gsap.registerPlugin(ScrollTrigger)
   setAnimation()
 })
+
+onUnmounted(() => {
+  cancelAnimationFrame(cursorFrame)
+  window.removeEventListener('pointermove', emitCursorParticles)
+  window.removeEventListener('resize', resizeCursorCanvas)
+})
+
+function resizeCursorCanvas() {
+  const canvas = cursorCanvas.value
+  if (!canvas || !cursorContext) return
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+  canvas.width = Math.round(window.innerWidth * dpr)
+  canvas.height = Math.round(window.innerHeight * dpr)
+  canvas.style.width = `${window.innerWidth}px`
+  canvas.style.height = `${window.innerHeight}px`
+  cursorContext.setTransform(dpr, 0, 0, dpr, 0, 0)
+}
+
+function setupCursorParticles() {
+  const canvas = cursorCanvas.value
+  if (!canvas) return
+  cursorContext = canvas.getContext('2d')
+  if (!cursorContext) return
+  cursorMotionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  resizeCursorCanvas()
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && cursorMotionAllowed) {
+    window.addEventListener('pointermove', emitCursorParticles, { passive: true })
+    window.addEventListener('resize', resizeCursorCanvas, { passive: true })
+    cursorFrame = requestAnimationFrame(drawCursorParticles)
+  }
+}
+
+function emitCursorParticles(event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+  const dx = event.clientX - lastPointer.x
+  const dy = event.clientY - lastPointer.y
+  const distance = Math.hypot(dx, dy)
+  const count = Math.min(9, Math.max(2, Math.ceil(distance / (7 + Math.random() * 12))))
+  for (let i = 0; i < count; i++) {
+    const alongTrail = Math.random()
+    cursorParticles.push({
+      x: lastPointer.x + dx * alongTrail + (Math.random() - 0.5) * 18,
+      y: lastPointer.y + dy * alongTrail + (Math.random() - 0.5) * 18,
+      vx: (Math.random() - 0.5) * 1.4 - dx * (0.004 + Math.random() * 0.012),
+      vy: (Math.random() - 0.5) * 1.4 - dy * (0.004 + Math.random() * 0.012),
+      radius: Math.random() ** 0.7 * 8 + 2,
+      life: 1,
+      maxLife: Math.random() * 72 + 28,
+      tone: Math.random() > 0.5 ? '249, 205, 117' : '116, 166, 167',
+      phase: Math.random() * Math.PI * 2,
+      wobble: Math.random() * 0.09 + 0.015,
+      opacity: Math.random() * 0.3 + 0.55,
+    })
+  }
+  if (cursorParticles.length > 360) cursorParticles.splice(0, cursorParticles.length - 360)
+  lastPointer = { x: event.clientX, y: event.clientY }
+}
+
+function drawCursorParticles() {
+  const ctx = cursorContext
+  if (!ctx) return
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+  cursorParticles = cursorParticles.filter((particle) => {
+    particle.x += particle.vx
+    particle.y += particle.vy
+    particle.phase += particle.wobble
+    particle.x += Math.sin(particle.phase) * 0.35
+    particle.y += Math.cos(particle.phase * 0.8) * 0.3
+    particle.vx *= 0.975 + Math.random() * 0.018
+    particle.vy *= 0.975 + Math.random() * 0.018
+    particle.life -= 1 / particle.maxLife
+    if (particle.life <= 0) return false
+    const fade = Math.sin(Math.PI * particle.life) ** 0.65
+    const pulse = 0.78 + Math.sin(particle.phase * 1.7) * 0.22
+    const alpha = particle.opacity * fade * pulse * 0.28
+    ctx.beginPath()
+    ctx.arc(particle.x, particle.y, particle.radius * (0.45 + pulse * 0.55), 0, Math.PI * 2)
+    ctx.fillStyle = `rgba(${particle.tone}, ${alpha})`
+    ctx.shadowBlur = 8
+    ctx.shadowColor = `rgba(${particle.tone}, ${alpha})`
+    ctx.fill()
+    return true
+  })
+  ctx.shadowBlur = 0
+  cursorFrame = requestAnimationFrame(drawCursorParticles)
+}
 
 const setAnimation = () => {
   gsap.fromTo(

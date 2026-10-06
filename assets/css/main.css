@@ -43,8 +43,18 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, rgb(227 219 212 / 72%), rgb(227 219 212 / 48%));
 }
 
+.cursor-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .hero-video iframe {
-        display: none;
-    }
+    .cursor-particles { display: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .cursor-particles { display: none; }
 }
